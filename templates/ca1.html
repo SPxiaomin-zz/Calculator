@@ -1,6 +1,21 @@
 {% extends "ca.html" %}
+{% block head %}
+    {{ super() }}
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        input {
+            height: 50px;
+        }
+        h1:hover {
+            text-decoration: underline;
+        }
+    </style>
+{% endblock %}
 {% block body %}
-<body>
+<body style="background-color: #D19275;">
     <script type="text/javascript">
     $(function () {
         var submit_form = function (e) {
@@ -14,18 +29,23 @@
         };
 
 
-    $('input[name="a"]').focus();
 
     $('input[type="text"]').bind('keydown', function(e) {
             if ( e.keyCode == 13 ){
                 submit_form(e);
+                $('input[name="a"]').focus();
             }
             });
 
+    $('input[name="a"]').focus();
     });
     </script>
-    <h1>Junmin Gu</h1>
-    <p>
+    <div style="text-align: center; padding: 50px; color: #000000;">
+        <h1><i>Junmin Gu<i><br /><h2 style="padding-left: 50px;">---Calculator</h2></h1>
+    
+</div>
+    <div style="position: absolute; left: 45%; top: 50%;">
+    <p style="height: 50px;">
         <input type="text" size="5" name="a" > 
         <select id="operator">
             <option value="+">+</option>
@@ -37,5 +57,6 @@
         <input type="text" size="5" name="b" > =
         <span id="result">?</span>
     </p>
+</div>
 </body>
 {% endblock %}
