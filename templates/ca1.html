@@ -1,0 +1,41 @@
+{% extends "ca.html" %}
+{% block body %}
+<body>
+    <script type="text/javascript">
+    $(function () {
+        var submit_form = function (e) {
+        $.getJSON($SCRIPT_ROOT + '/calcal', {
+            a : $('input[name="a"]').val(),
+            b : $('input[name="b"]').val(),
+            operator : $('select#operator').val()
+            }, function (data) {
+                $('#result').text(data.result)
+            });           
+        };
+
+
+    $('input[name="a"]').focus();
+
+    $('input[type="text"]').bind('keydown', function(e) {
+            if ( e.keyCode == 13 ){
+                submit_form(e);
+            }
+            });
+
+    });
+    </script>
+    <h1>Junmin Gu</h1>
+    <p>
+        <input type="text" size="5" name="a" > 
+        <select id="operator">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">x</option>
+            <option value="/">/</option>
+            <option value="%">%</option>
+        </select>
+        <input type="text" size="5" name="b" > =
+        <span id="result">?</span>
+    </p>
+</body>
+{% endblock %}
